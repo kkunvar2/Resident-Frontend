@@ -16,7 +16,7 @@ const ComplaintForm = () => {
         try {
             const response = await fetch('http://your-api-endpoint.com/api/v1/complaint/register-complaint', {
                 method: 'POST',
-                headers: {
+                headers: {  
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(values),

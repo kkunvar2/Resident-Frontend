@@ -5,6 +5,8 @@ import ComplaintTab from './Components/Complaint/ComplaintTab'
 import ComplaintForm from './Components/Complaint/ComplaintForm'
 import Feedback from './Components/Feedback/Feedback'
 import Feed from './Components/Feedback/Feed'
+import Reg from './Components/Registration/Reg'
+import Login from './Components/Registration/Login'
 
 
 const App = () => {
@@ -12,9 +14,11 @@ const App = () => {
     <>
     <BrowserRouter>
       <Routes>
+        <Route path='/' element={<Login />}/>
+        <Route path='/reg' element={<Reg />}/>
+        <Route path='/complaintTab' element={<ComplaintTab />}/>
+        <Route path='/complaintForm' element={<ComplaintForm />}/>
         {/* <Route path='/' element={<GuestReport />}/> */}
-        {/* <Route path='/' element={<ComplaintTab />}/> */}
-        <Route path='/' element={<ComplaintForm />}/>
         {/* <Route path='/' element={<Feedback />}/> */}
         {/* <Route path='/' element={<Feed />}/> */}
 
