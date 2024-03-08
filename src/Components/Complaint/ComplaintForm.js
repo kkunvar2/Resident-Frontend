@@ -10,9 +10,26 @@ const ComplaintForm = () => {
         description: ''
     })
     
-    //submit
-    const handleSubmit = (e) =>{
+    //submiting form
+    const handleSubmit = async (e) =>{
         e.preventDefault()
+        try {
+            const response = await fetch('http://your-api-endpoint.com/api/v1/complaint/register-complaint', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values),
+            });
+            if (response.ok) {
+                
+                console.log('Complaint registered successfully');
+            } else {
+                console.error('Failed to register complaint');
+            }
+        } catch (error) {
+            console.error('Error registering complaint:', error);
+        }
         console.log(values);
     }
     
