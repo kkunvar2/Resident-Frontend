@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import bg from "../Assests/img_2.jpg"
 
 const MemEvent = () => {
 
@@ -9,7 +8,8 @@ const MemEvent = () => {
     type: '',
     startDate: '',
     endDate: '',
-    disable: false,
+    check: false,
+    book: false
   })
 
   
@@ -29,10 +29,20 @@ const MemEvent = () => {
     // Update state with total days
       setvalues({
         ...values,
-        totalDays: diffDays
+        totalDays: diffDays,
+        book: values.check
       });
       console.log(values)
 }
+
+  const handleCheck = () => {
+    // Here you can implement the logic to check availability
+    // For now, I'm just setting the check value to true after clicking the button
+    setvalues({
+      ...values,
+      check: true
+    });
+  };
 
   const handlechange = (e) => {
     const { name, value } = e.target;
@@ -41,6 +51,8 @@ const MemEvent = () => {
         [name]: value,
     });
 }
+
+
 
 return (
   <>
@@ -104,7 +116,20 @@ return (
             
             {/* Total */}
             <div className='flex justify-between items-center'>
-              <button  type='submit' className='text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg'>Book</button>
+              <div className='flex flex-col gap-2 items-start'>
+                <button  className='text-white bg-yellow-500 border-0 py-2 px-2 w-42 focus:outline-none hover:bg-yellow-600 rounded text-lg'
+                        onClick={handleCheck}
+                        type='submit'>
+                        Check Avaibility
+                </button>
+                
+                <button  className={`text-white bg-blue-500 border-0 py-2 px-0 w-20 focus:outline-none hover:bg-blue-600 rounded text-lg ${!values.book && 'opacity-50 cursor-not-allowed'}`}
+                        disabled={!values.book}
+                        type='submit' >
+                        Book
+                </button>
+              </div>
+              
               <h2 className='text-white'>Total Days: <span className=' text-yellow-500'>{values.totalDays}</span></h2>
             </div>
 
