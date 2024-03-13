@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import "./LoginSignup.css"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 // icons
@@ -9,6 +8,8 @@ import { Link } from 'react-router-dom';
 // import pass_icon from "../Assets/padlock.png"
 
 const Login = () => {
+
+    const navigate = useNavigate();
 
     //States
     const [inputs, setInputs] = useState({
@@ -52,7 +53,7 @@ const Login = () => {
                 body: JSON.stringify(inputs),
             });
             if (response.ok) {
-                
+                navigate('/complaintForm')
                 console.log('Complaint registered successfully');
             } else {
                 console.error('Failed to register complaint');
@@ -86,8 +87,8 @@ const Login = () => {
             </div>
             <div className='forgot-password'>Lost Password? <span>click Here!</span></div>
             <div className='submit-container'>
-                <Link to='/reg'><div className='submit'>SignUp</div></Link>
-                <Link to='/complaintForm'><div className='submit'>Login</div></Link>
+                <Link to='/reg'><button className='submit'>SignUp</button></Link>
+                <button className='submit' type='submit'>Login</button>
             </div>
         </div>
     </form>

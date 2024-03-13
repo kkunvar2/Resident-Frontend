@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import "./LoginSignup.css"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import user_icon from "../Assets/user.png"
 // import email_icon from "../Assets/email.png"
 // import pass_icon from "../Assets/padlock.png"
 // import phone_icon from "../Assets/phone.png"
 
 const Reg = () => {
+
+    const navigate = useNavigate();
+
     const wings = ['A', 'B', 'C', 'D'];
     const floors = {
         'A': ['101', '102', '103', '104', '105'],
@@ -23,12 +25,12 @@ const Reg = () => {
     const [inputs, setInputs] = useState({
         name: '',
         email: '',
-        contactNum: '',
+        mobile: '',
     });
     const [formErrors, setFormErrors] = useState({
         name: '',
         email: '',
-        contactNum: '',
+        mobile: '',
     });
 
     const handleWing = (e) => {
@@ -51,8 +53,8 @@ const Reg = () => {
             case 'email':
                 errors.email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Invalid email address';
                 break;
-            case 'contactNum':
-                errors.contactNum = value.length !== 10 ? 'Contact Number Must be 10 Digits' : '';
+            case 'mobile':
+                errors.mobile = value.length !== 10 ? 'Contact Number Must be 10 Digits' : '';
                 break;
             default:
                 break;
@@ -88,7 +90,7 @@ const Reg = () => {
                 body: JSON.stringify(inputs),
             });
             if (response.ok) {
-                
+                navigate('/')
                 console.log('Complaint registered successfully');
             } else {
                 console.error('Failed to register complaint');
@@ -123,9 +125,9 @@ const Reg = () => {
                         
                         <div className='input'>
                             <img src='' alt='' />
-                            <input type='number' placeholder='Phone Number' name='contactNum' value={inputs.contactNum} onChange={handleValidation} />
+                            <input type='number' placeholder='Phone Number' name='mobile' value={inputs.mobile} onChange={handleValidation} />
                         </div>
-                            {formErrors.contactNum && <p style={{ color: "red", fontSize: "13px", paddingLeft: "20rem", margin: 0 }}>{formErrors.contactNum}</p>}
+                            {formErrors.mobile && <p style={{ color: "red", fontSize: "13px", paddingLeft: "20rem", margin: 0 }}>{formErrors.mobile}</p>}
 
                         <div className='dropdown'>
                             <div className='menu-field'>
@@ -174,7 +176,8 @@ const Reg = () => {
                     <div className='forgot-password'>Lost Password? <span>click Here!</span></div>
 
                     <div className='submit-container'>
-                    <Link to='/'><button type='submit' className='submit'>Login</button></Link>
+                    <button type='submit' className='submit'>SignUp</button>
+
                     </div>
                 </div>
             </form>
