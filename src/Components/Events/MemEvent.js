@@ -30,18 +30,22 @@ const MemEvent = () => {
       setvalues({
         ...values,
         totalDays: diffDays,
-        book: values.check
+        book: values.check && values.type !== '' && values.startDate !== '' && values.endDate !== '', //if empty getting disabled automatically
+        type: '',
+        
       });
+
       console.log(values)
 }
 
   const handleCheck = () => {
-    // Here you can implement the logic to check availability
-    // For now, I'm just setting the check value to true after clicking the button
+    // logic for getting book value true
     setvalues({
       ...values,
       check: true
     });
+
+
   };
 
   const handlechange = (e) => {
