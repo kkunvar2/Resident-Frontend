@@ -9,28 +9,30 @@ const MemEvent = () => {
     type: '',
     startDate: '',
     endDate: '',
+    disable: false,
   })
 
   
-  
+  //Getting Today
+  const today = new Date().toISOString().split('T')[0];
+
+
   const handleSubmit = (e) =>{
     e.preventDefault()
 
-     // Calculate total days
-     const start = new Date(values.startDate);
-     const end = new Date(values.endDate);
-     const diffTime = Math.abs(end - start);
-     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24) + 1);
- 
-     // Update state with total days
-     setvalues({
-       ...values,
-       totalDays: diffDays
-     });
-    console.log(values)
+    // Calculate total day
+    const start = new Date(values.startDate);
+    const end = new Date(values.endDate);
+    const diffTime = Math.abs(end - start);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24) + 1);
     
-  }
-
+    // Update state with total days
+      setvalues({
+        ...values,
+        totalDays: diffDays
+      });
+      console.log(values)
+}
 
   const handlechange = (e) => {
     const { name, value } = e.target;
@@ -39,6 +41,7 @@ const MemEvent = () => {
         [name]: value,
     });
 }
+
 return (
   <>
     <section className='h-screen  bg-gray-900 body-font'>
@@ -66,11 +69,11 @@ return (
                 {values.type === "Other" && ( // Conditionally render input box if "Other" is selected
                 <input
                   type="text"
-                  placeholder='Enter here..'
+                  placeholder='Enter other type'
                   name="otherType="
                   value={values.otherType}
                   onChange={handlechange}
-                  className='lg:w-[30%] lg:ml-4 bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 rounded border border-gray-600 focus:border-yellow-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"'
+                  className='lg:w-[30%] lg:ml-4 bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 rounded border border-gray-600 focus:border-yellow-500 text-base outline-none text-gray-100 px-3 leading-8 transition-colors duration-200 ease-in-out"'
                 />
               )}
             </div>
@@ -84,6 +87,7 @@ return (
                     value={values.startDate}
                     type="date"  
                     name="startDate" 
+                    min={today}
                     className="w-[20rem] bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 rounded border border-gray-600 focus:border-yellow-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
               </div>
               <div className='flex flex-col'>
@@ -92,14 +96,16 @@ return (
                     onChange={handlechange} 
                     value={values.endDate}
                     type="date"  
-                    name="endDate" 
+                    name="endDate"
+                    min={today} 
                     className="w-[20rem] bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 rounded border border-gray-600 focus:border-yellow-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
               </div>
             </div>
-
+            
+            {/* Total */}
             <div className='flex justify-between items-center'>
-              <button type='submit' className='text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg'>Book</button>
-              <h2 className='text-white'>Total Days: {values.totalDays} </h2>
+              <button  type='submit' className='text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg'>Book</button>
+              <h2 className='text-white'>Total Days: <span className=' text-yellow-500'>{values.totalDays}</span></h2>
             </div>
 
         </form>
