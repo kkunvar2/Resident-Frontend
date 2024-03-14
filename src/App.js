@@ -7,6 +7,9 @@ import Feed from './Components/Feedback/Feed'
 import Reg from './Components/Registration/Reg'
 import Login from './Components/Registration/Login'
 import MemEvent from './Components/Events/MemEvent'
+import Guest from './Components/Guest/Guest'
+import GuestForm from './Components/Guest/GuestForm'
+import GuestRecords from './Components/Guest/GuestRecords'
 
 
 const App = () => {
@@ -14,13 +17,30 @@ const App = () => {
     <>
     <BrowserRouter>
       <Routes>
-        {/* <Route path='/' element={<Login />}/> */}
-        <Route path='/' element={<MemEvent />}/>
-        {/* <Route path='/' element={<Reg />}/> */}
-        <Route path='/complaintTab' element={<ComplaintTab />}/>
+
+        {/* Login & Signup*/}
+        <Route path='/login' element={<Login />}/>
+        <Route path='/reg' element={<Reg />}/>
+
+        {/* Guest */}
+        <Route path='/' element={<Guest/>}/>
+        <Route path='/guestform' element={<GuestForm />}/>
+        <Route path='/guestreport' element={<GuestReport />}/>
+        <Route path='/guestrecords' element={<GuestRecords />}/>
+
+        {/* Complaint */}
         <Route path='/complaintForm' element={<ComplaintForm />}/>
-        {/* <Route path='/' element={<GuestReport />}/> */}
-        {/* <Route path='/' element={<Feed />}/> */}
+        <Route path='/complaintTab' element={<ComplaintTab />}/>
+
+        {/* Event */}
+        <Route path='/memevent' element={<MemEvent />}/>
+
+        {/* Meetings */}
+        
+        {/* Maintanance */}
+
+        {/* FeedBack */}
+        <Route path='/feed' element={<Feed />}/>
 
       </Routes>
     </BrowserRouter>
