@@ -10,6 +10,8 @@ import MemEvent from './Components/Events/MemEvent'
 import Guest from './Components/Guest/Guest'
 import GuestForm from './Components/Guest/GuestForm'
 import GuestRecords from './Components/Guest/GuestRecords'
+import MemMeeting from './Components/Meetings/MemMeeting'
+import SecMeetings from './Components/Meetings/SecMeetings'
 
 
 const App = () => {
@@ -36,11 +38,14 @@ const App = () => {
         <Route path='/memevent' element={<MemEvent />}/>
 
         {/* Meetings */}
+        <Route path='/' element={<MemMeeting />}/>
+        <Route path='/secmeetings' element={<SecMeetings/>}/>
+
         
         {/* Maintanance */}
 
         {/* FeedBack */}
-        <Route path='/' element={<Feed />}/>
+        <Route path='/feed' element={<Feed />}/>
 
       </Routes>
     </BrowserRouter>
