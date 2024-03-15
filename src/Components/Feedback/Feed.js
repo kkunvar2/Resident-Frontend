@@ -1,7 +1,32 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import bg from "../Assests/img_2.jpg"
 
 const Feed = () => {
+
+    const form = useRef(null)
+    const [error, seterror] = useState(null)
+    
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+        const formData = new FormData(form.current)
+        const feed = Object.fromEntries(formData.entries())
+
+        console.log(feed);
+        
+        const response = await fetch(``,{
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(feed)
+        })
+        
+
+        const data = await response.json()
+        if(data?.error){
+            seterror(data.error)
+            return
+        }
+        form.current.reset()
+    }
   return (
     <>
         <div className='bg-gray-100'>
@@ -18,11 +43,13 @@ const Feed = () => {
                     {/* Form */}
                     <div >
                          <div className='md:mt-12 bg-white rounded-xl shadow-lg p-8 text-gray-600 md:w-90 '>
-                            <form className='flex flex-col space-y-4'>
+                            <form className='flex flex-col space-y-4'
+                            onSubmit={handleSubmit} ref={form}>
                                 {/* name */}
                                 <div>
                                     <label className='text-sm'>Your name</label>
-                                    <input type='text' 
+                                    <input type='text'
+                                           name='name'
                                            placeholder='Your name' 
                                            className=' mt-2 ring-1 ring-gray-300 w-full rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-yellow-200'/>
                                 </div>
@@ -31,6 +58,7 @@ const Feed = () => {
                                 <div>
                                     <label className='text-sm'>Email</label>
                                     <input type='text' 
+                                           name='email'
                                            placeholder='email address' 
                                            className=' mt-2 ring-1 ring-gray-300 w-full rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-yellow-200'/>  
                                 </div>
@@ -39,12 +67,14 @@ const Feed = () => {
                                 <div>
                                     <label className='text-sm'>Message</label>
                                     <textarea type='text' 
+                                           name='message'
                                            placeholder='Message...' 
                                            rows={4}
                                            className=' mt-2 ring-1 ring-gray-300 w-full rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-yellow-200'/>  
                                 </div>
                                 
-                                <button className=' inline-block self-end bg-cyan-700 text-white font-bold rounded-lg px-6 py-2 uppercase text-sm'>
+                                <button className=' inline-block self-end bg-cyan-600 text-white font-bold rounded-lg px-6 py-2 uppercase text-sm'
+                                        type='submit'>
                                     Send Message
                                 </button>
                             </form>

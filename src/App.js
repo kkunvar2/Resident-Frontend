@@ -23,7 +23,7 @@ const App = () => {
         <Route path='/reg' element={<Reg />}/>
 
         {/* Guest */}
-        <Route path='/' element={<Guest/>}/>
+        <Route path='/guest' element={<Guest/>}/>
         <Route path='/guestform' element={<GuestForm />}/>
         <Route path='/guestreport' element={<GuestReport />}/>
         <Route path='/guestrecords' element={<GuestRecords />}/>
@@ -40,7 +40,7 @@ const App = () => {
         {/* Maintanance */}
 
         {/* FeedBack */}
-        <Route path='/feed' element={<Feed />}/>
+        <Route path='/' element={<Feed />}/>
 
       </Routes>
     </BrowserRouter>
