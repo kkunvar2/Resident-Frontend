@@ -12,6 +12,7 @@ import GuestForm from './Components/Guest/GuestForm'
 import GuestRecords from './Components/Guest/GuestRecords'
 import MemMeeting from './Components/Meetings/MemMeeting'
 import SecMeetings from './Components/Meetings/SecMeetings'
+import Dashboard from './Components/Dashboard/Dashboard'
 
 
 const App = () => {
@@ -19,6 +20,10 @@ const App = () => {
     <>
     <BrowserRouter>
       <Routes>
+
+        {/* Dashboard */}
+        <Route path='/' element={<Dashboard />}/>
+
 
         {/* Login & Signup*/}
         <Route path='/login' element={<Login />}/>
@@ -38,7 +43,7 @@ const App = () => {
         <Route path='/memevent' element={<MemEvent />}/>
 
         {/* Meetings */}
-        <Route path='/' element={<MemMeeting />}/>
+        <Route path='/me' element={<MemMeeting />}/>
         <Route path='/secmeetings' element={<SecMeetings/>}/>
 
         
