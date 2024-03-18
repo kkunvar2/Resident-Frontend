@@ -61,9 +61,9 @@ const MemEvent = () => {
 return (
   <>
     <section className=' bg-gray-900 h-auto md:h-screen'>
-      <div className='flex px-4 py-24 gap-16'>
+      <div className='flex flex-col px-4 py-24 gap-16'>
         {/* form */}
-        <form  onSubmit={handleSubmit} className='lg:w-[45%] md:w-1/2 bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col  w-[90rem] mt-10 md:mt-0'>
+        <form  onSubmit={handleSubmit} className='lg:w-[45%] md:w-1/2 bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col w-[100%] mt-10 md:mt-0'>
             <div className='flex items-center justify-between'>
               <h2 className="text-white text-lg font-medium title-font mb-5">Book Event</h2> 
             </div>

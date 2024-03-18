@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import logo from '../Assests/LogwinTech-removebg-preview.png'
 
 const Log = () => {
     const navigate = useNavigate();
@@ -72,7 +71,7 @@ const Log = () => {
 
                         <h3 className="mt-3 text-xl font-medium text-center text-gray-400 dark:text-gray-200">Welcome Back</h3>
 
-                        <p className="mt-1 text-center text-gray-500 dark:text-gray-400">Login</p>
+                        <p className="mt-1 text-center text-gray-500 dark:text-gray-400">Login or create account</p>
 
                         <form onSubmit={handleSubmit}>
                             <div className="w-full mt-4">
@@ -82,7 +81,7 @@ const Log = () => {
                                 name='email' 
                                 value={inputs.email} 
                                 onChange={handleValidation} />
-                                {formErrors.email && <p style={{ color: "#ff6347", fontSize: "13px",  margin: 0}}>{formErrors.email}</p>}
+                                {formErrors.email && <p style={{ color: "#ff6347", fontSize: "13px", padding:"10px",  margin: 0}}>{formErrors.email}</p>}
                             </div>
 
                             <div className="w-full mt-4">
@@ -92,13 +91,15 @@ const Log = () => {
                                 name='password' 
                                 value={inputs.password} 
                                 onChange={handleValidation} />
-                                {/* {formErrors.password && <p style={{ color: "red", fontSize: "13px", paddingLeft: "25rem", margin: 0}}>{formErrors.password}</p>} */}
+                                {formErrors.password && <p style={{ color: "#ff6347", fontSize: "13px", padding:"10px", margin: 0}}>{formErrors.password}</p>}
                             </div>
 
                             <div className="flex items-center justify-between mt-4">
-                                <a href="#" className="text-sm  text-blue-400 dark:text-gray-200 hover:text-gray-500">Forget Password?</a>
+                                <p className="text-sm  text-blue-400 dark:text-gray-200 hover:text-gray-500">Forget Password?</p>
 
-                                <button className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-yellow-400 rounded-lg hover:bg-yellow-500 ">
+                                <button className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-yellow-400 rounded-lg hover:bg-yellow-500"
+                                        onClick={handleSubmit}
+                                        type='submit'>
                                     Login
                                 </button>
                             </div>
@@ -108,7 +109,7 @@ const Log = () => {
                     <div className="flex items-center justify-center py-4 text-center bg-gray-700">
                         <span className="text-sm text-gray-200 ">Don't have an account? </span>
 
-                        <Link to='/reg'>
+                        <Link to='/register'>
                             <p className="mx-2 mt-3 text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline">Register</p>
                         </Link>
                     </div>

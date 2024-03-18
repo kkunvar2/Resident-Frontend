@@ -90,7 +90,7 @@ const Reg = () => {
                 body: JSON.stringify(inputs),
             });
             if (response.ok) {
-                navigate('/')
+                navigate('/dash ')
                 console.log('Complaint registered successfully');
             } else {
                 console.error('Failed to register complaint');

@@ -5,7 +5,6 @@ import ComplaintTab from './Components/Complaint/ComplaintTab'
 import ComplaintForm from './Components/Complaint/ComplaintForm'
 import Feed from './Components/Feedback/Feed'
 import Reg from './Components/Registration/Reg'
-import Login from './Components/Registration/Login'
 import MemEvent from './Components/Events/MemEvent'
 import Guest from './Components/Guest/Guest'
 import GuestForm from './Components/Guest/GuestForm'
@@ -15,6 +14,7 @@ import SecMeetings from './Components/Meetings/SecMeetings'
 import Dashboard from './Components/Dashboard/Dashboard'
 import Landing from './Components/LandingPage/Landing'
 import Log from './Components/Registration/Log'
+import Register from './Components/Registration/Register'
 
 
 const App = () => {
@@ -23,12 +23,12 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         {/* Landing Page */}
-        <Route path='/landingpage' element={<Landing />}/>
+        <Route path='/' element={<Landing />}/>
 
         {/* Login & Signup*/}
-        <Route path='/' element={<Log />}/>
-        <Route path='/login' element={<Login />}/>
+        <Route path='/log' element={<Log />}/>
         <Route path='/reg' element={<Reg />}/>
+        <Route path='/register' element={<Register />}/>
 
         {/* Dashboard */}
         <Route path='/dash' element={<Dashboard />}/>
