@@ -14,6 +14,7 @@ import MemMeeting from './Components/Meetings/MemMeeting'
 import SecMeetings from './Components/Meetings/SecMeetings'
 import Dashboard from './Components/Dashboard/Dashboard'
 import Landing from './Components/LandingPage/Landing'
+import Log from './Components/Registration/Log'
 
 
 const App = () => {
@@ -22,9 +23,10 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         {/* Landing Page */}
-        <Route path='/' element={<Landing />}/>
+        <Route path='/landingpage' element={<Landing />}/>
 
         {/* Login & Signup*/}
+        <Route path='/' element={<Log />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/reg' element={<Reg />}/>
 
