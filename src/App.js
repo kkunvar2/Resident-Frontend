@@ -13,6 +13,7 @@ import GuestRecords from './Components/Guest/GuestRecords'
 import MemMeeting from './Components/Meetings/MemMeeting'
 import SecMeetings from './Components/Meetings/SecMeetings'
 import Dashboard from './Components/Dashboard/Dashboard'
+import Landing from './Components/LandingPage/Landing'
 
 
 const App = () => {
@@ -20,14 +21,15 @@ const App = () => {
     <>
     <BrowserRouter>
       <Routes>
-
-        {/* Dashboard */}
-        <Route path='/' element={<Dashboard />}/>
-
+        {/* Landing Page */}
+        <Route path='/' element={<Landing />}/>
 
         {/* Login & Signup*/}
         <Route path='/login' element={<Login />}/>
         <Route path='/reg' element={<Reg />}/>
+
+        {/* Dashboard */}
+        <Route path='/dash' element={<Dashboard />}/>
 
         {/* Guest */}
         <Route path='/guest' element={<Guest/>}/>

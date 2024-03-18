@@ -60,10 +60,10 @@ const MemEvent = () => {
 
 return (
   <>
-    <section className='h-screen  bg-gray-900 body-font'>
-      <div className='flex justify-between px-10 py-24'>
+    <section className=' bg-gray-900 h-auto md:h-screen'>
+      <div className='flex px-4 py-24 gap-16'>
         {/* form */}
-        <form  onSubmit={handleSubmit} className='lg:w-3/6 md:w-1/2 bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col  w-[90rem] mt-10 md:mt-0'>
+        <form  onSubmit={handleSubmit} className='lg:w-[45%] md:w-1/2 bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col  w-[90rem] mt-10 md:mt-0'>
             <div className='flex items-center justify-between'>
               <h2 className="text-white text-lg font-medium title-font mb-5">Book Event</h2> 
             </div>
@@ -72,7 +72,7 @@ return (
             <div className="flex max-md:flex-col max-lg:flex-row mb-5  gap-3 ">
                 <div className='w-[60%]'>
                   <label className="leading-7 text-lg text-gray-400">Type: </label>
-                  <select className='max-lg:w-[70%] lg:ml-4 bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 rounded border border-gray-600 focus:border-yellow-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"'
+                  <select className='max-lg:w-[95%] lg:ml-4 bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 rounded border border-gray-600 focus:border-yellow-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"'
                           onChange={handlechange}
                           value={values.type}
                           name="type"  >
@@ -141,15 +141,12 @@ return (
               
               <h2 className='text-white'>Total Days: <span className=' text-yellow-500'>{values.totalDays}</span></h2>
             </div>
-
-        </form>
-
-        {/* <div className='lg:w-2/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0'>
-          <h1 className="title-font font-medium text-3xl text-white">Make your Booking for a Events and Funcions</h1>
-          <p className=" text-gray-400 leading-relaxed mt-4">If secretary is approved your reservation than you have been eligible for celebrating <span className='text-yellow-500'>Have great day</span> </p>
-        </div> */}
-
-      </div>
+          </form>
+          {/* Tab */}
+          <div className='lg:w-[45%]'>
+              
+          </div>
+        </div>
     </section>
     </>
   )

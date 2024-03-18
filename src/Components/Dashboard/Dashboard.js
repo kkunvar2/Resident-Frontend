@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom'
 const Dashboard = () => {
   return (
    <>
-   <div className=' h-screen bg-slate-300'>   
+   <div className='h-auto md:h-screen bg-slate-300'>   
    <div>
     <Nav/>
    </div>
-    <div className=' flex items-center justify-center flex-col'>
+    <div className=' flex items-center justify-center flex-col pb-6'>
             <h1 className='text-5xl font-bold mt-10 text-slate-400'>Welcome User</h1>
             <div className='grid sm:grid-cols-2 grid-cols-1 mt-12 gap-10 '>
                 <Link to='/memmaintanence'>
