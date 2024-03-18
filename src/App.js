@@ -43,7 +43,7 @@ const App = () => {
         <Route path='/memevent' element={<MemEvent />}/>
 
         {/* Meetings */}
-        <Route path='/me' element={<MemMeeting />}/>
+        <Route path='/memmeeting' element={<MemMeeting />}/>
         <Route path='/secmeetings' element={<SecMeetings/>}/>
 
         
