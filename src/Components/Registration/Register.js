@@ -146,7 +146,7 @@ const Register = () => {
                         <div className='flex gap-1'>
                             {/* wing */}
                             <div className='menu-field'>
-                                <select className='bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 rounded-full border border-gray-600 focus:border-yellow-500 text-base outline-none text-gray-100 py-0 px-3 leading-8 transition-colors duration-200 ease-in-out' 
+                                <select className='bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 rounded-full border border-gray-600 focus:border-yellow-500 text-sm outline-none text-gray-100 py-0 px-3 leading-8 transition-colors duration-200 ease-in-out' 
                                     onChange={handleWing}>
                                     <option className='bg-gray-600 font-normal' value="">Wing</option>
                                     {
@@ -159,7 +159,7 @@ const Register = () => {
                             </div>
                             {/* floor */}
                             <div className='menu-field'>
-                                {selwing && <select className='bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 rounded-full border border-gray-600 focus:border-yellow-500 text-base outline-none text-gray-100 py-0 px-3 leading-8 transition-colors duration-200 ease-in-out'
+                                {selwing && <select className='bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 rounded-full border border-gray-600 focus:border-yellow-500 text-sm outline-none text-gray-100 py-0 px-3 leading-8 transition-colors duration-200 ease-in-out'
                                     onChange={handleFloor}>
                                     <option className='bg-gray-600 font-normal' value="">Floor</option>
                                     {

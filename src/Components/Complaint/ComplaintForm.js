@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ComplaintTab from './ComplaintTab'
+import { Link } from 'react-router-dom'
 
 
 
@@ -43,7 +43,7 @@ const ComplaintForm = () => {
 
     return (
     <>
-    <section className=" h-screen text-gray-400 bg-gray-900 body-font">
+    <section className=" h-auto text-gray-400 bg-gray-900 body-font">
         <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
             <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
             <h1 className="title-font font-medium text-3xl text-white">Have you any Problem? freely raise your complaint</h1>
@@ -86,8 +86,11 @@ const ComplaintForm = () => {
             <p className="text-xs mt-3">Contact Secretary <span className='text-blue-400'>+91*******78</span></p>
             </form>
         </div>
-
-        <ComplaintTab/>
+        <div className='flex justify-center '>
+            <Link to='/dash'>
+                <button className='bg-white p-3 rounded-full text-black font-semibold shadow-lg shadow-gray-600'>Go Back</button>
+            </Link>
+        </div>
     </section>  
     </>
   )

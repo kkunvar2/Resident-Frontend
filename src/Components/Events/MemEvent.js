@@ -72,7 +72,7 @@ return (
             <div className="flex max-md:flex-col max-lg:flex-row mb-5  gap-3 ">
                 <div className='w-[60%]'>
                   <label className="leading-7 text-lg text-gray-400">Type: </label>
-                  <select className='max-lg:w-[95%] lg:ml-4 bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 rounded border border-gray-600 focus:border-yellow-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"'
+                  <select className='max-lg:w-[95%] lg:ml-4 bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 rounded border border-gray-600 focus:border-yellow-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                           onChange={handlechange}
                           value={values.type}
                           name="type"  >

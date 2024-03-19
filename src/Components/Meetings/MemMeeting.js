@@ -6,6 +6,7 @@ const MemMeeting = () => {
     const [meetings, setmeetings] = useState([])
     const [loading, setloading] = useState(true)
 
+
     //Fetching
     useEffect(() => {
         const fetchMeetings = async () => {
@@ -32,6 +33,14 @@ const MemMeeting = () => {
         });
     };
 
+    const handlesearch = (e) =>{
+        const searchdate = e.target.value;
+
+        const filter = meetings.filter((meet) => {
+            meet.date.includes(searchdate)
+        })
+        setmeetings(filter)
+    }
   return (
     <>
         <div className='h-screen bg-gray-900'>
@@ -48,8 +57,9 @@ const MemMeeting = () => {
                     </div>
                     <input className="block md:w-auto w-[10rem] p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                         type="search" 
-                        placeholder="Search Date...." 
-                        required />
+                        placeholder="Search Date...."
+                        onChange={handlesearch} 
+                        />
                 </div>
             </div>
 

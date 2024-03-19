@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Nav from '../Nav'
 import { Link } from 'react-router-dom'
 
 const Dashboard = () => {
+    const [accordion, setaccordion] = useState(false)
+    
   return (
    <>
    <div className='h-auto md:h-screen bg-slate-300'>   
@@ -18,12 +20,35 @@ const Dashboard = () => {
                         <p className='font-normal tracking-wide italic'>Your Monthly Maintanence details here</p>
                     </div>
                 </Link>
-                <Link to='/complaintForm'>
-                    <div className='flex flex-col bg-white w-72 p-3 cursor-pointer h-36 sm:w-[24rem] items-center justify-around rounded-md shadow-xl'>
-                        <h2 className='text-2xl font-bold  text-blue-600 tracking-wider '>Complaints</h2>
-                        <p className='font-normal tracking-wide italic '>Raise Your Complaints Here</p>
+
+                    <div onClick={() => setaccordion(!accordion)}>
+                        <div className='flex flex-col bg-white w-72 p-3 cursor-pointer h-36 sm:w-[24rem] items-center justify-around rounded-md shadow-xl'
+                            >
+                            <h2 className='text-2xl font-bold  text-blue-600 tracking-wider '>Complaints</h2>
+                            <p className='font-normal tracking-wide italic '>Raise Your Complaints Here</p>
+                        </div>
+                        {/* options */}
+                        <div className={`grid  overflow-hidden transition-all duration-300 ease-in-out ${
+                            accordion ? "grid-rows-[1fr] opacity-100" : " grid-rows-[0fr] opacity-0 "
+                        }`}>
+                           <div className='overflow-hidden mt-2'>
+                            {/* raise */}
+                            <Link to='/complaintForm'>
+                                <div className=' h-12 w-auto text-center bg bg-gradient-to-l to-yellow-400 from-yellow-200 p-3 rounded-md text-lg font-semibold text-gray-900 shadow-xl'>
+                                    Raise
+                                </div>
+                            </Link>
+                            {/* status */}
+                            <Link to='/complaintTab'>
+                                <div className=' h-12 mt-2 w-auto text-center bg bg-gradient-to-l to-blue-500 from-blue-300 p-3 rounded-md text-lg font-semibold text-gray-900 shadow-xl'>
+                                    Status
+                                </div>
+                            </Link>
+                           </div>
+                        </div>
                     </div>
-                </Link>
+                
+                
                 <Link to='/memmeeting'>
                     <div className='flex flex-col bg-white w-72 cursor-pointer h-36 sm:w-[24rem] items-center justify-around rounded-md shadow-xl'>
                         <h2 className='text-2xl font-bold  text-blue-600 tracking-wider '>Meetings</h2>
