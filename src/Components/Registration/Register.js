@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -85,27 +86,25 @@ const Register = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-
             const userdata = {
                 name: inputs.name,
                 email: inputs.email,
                 mobile: inputs.mobile,
                 password: pass,
-                confirmPassword: confirmPassword ,
                 wing: selwing,
-                flat: selfloor, 
+                flat: parseInt(selfloor),
                 roles: selroles,
-            }
-            console.log(userdata)
-            const response = await fetch('http://your-api-endpoint.com/api/v1/auth/signup', {
-                method: 'POST',
-                headers: {  
+            };
+            console.log(userdata);
+
+            const response = await axios.post('http://localhost:8081/api/v1/auth/signup', userdata, {
+                headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(userdata),
             });
-            if (response.ok) {
-                navigate('/log ')
+
+            if (response.status === 200) {
+                navigate('/log');
                 console.log('registered successfully');
             } else {
                 console.error('Failed to register');
@@ -114,6 +113,7 @@ const Register = () => {
             console.error('Error registering:', error);
         }
     };
+
 
   return (
     <>
@@ -132,7 +132,7 @@ const Register = () => {
                         <div className='flex'>
                             <select className='bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 rounded-full border border-gray-600 focus:border-yellow-500 text-sm outline-none text-gray-100 py-0 px-3 leading-8 transition-colors duration-200 ease-in-out' 
                                 onChange={handleRole}>
-                                <option className='bg-gray-600 font-normal'>Rolls</option>
+                                <option className='bg-gray-600 font-normal'>Roles</option>
                                 {
                                     roles.map((roll) => {
                                         return <option className='bg-gray-600 text-yellow-400' name='roles'>{roll}</option>

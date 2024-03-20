@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -35,26 +36,24 @@ const Log = () => {
         setInputs({ ...inputs, [name]: value });
     };
   
-    const handleSubmit = async(event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch('http://your-api-endpoint.com/api/v1/complaint/register-complaint', {
-                method: 'POST',
-                headers: {  
+            const response = await axios.post('http://localhost:8081/api/v1/complaint/signin', inputs, {
+                headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(inputs),
             });
-            if (response.ok) {
-                navigate('/dash')
-                console.log('Login Succesfully');
+
+            if (response.status === 200) {
+                navigate('/dash');
+                console.log('Login Successfully');
             } else {
                 console.error('Login Failed');
             }
         } catch (error) {
-            console.error('Error while login:');
+            console.error('Error while login:', error);
         }
-        console.log(inputs)
     };
 
 
