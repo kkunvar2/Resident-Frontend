@@ -85,14 +85,7 @@ const GuestForm = () => {
                         onChange={handleChange}/>
                 </div>
                 {/* purpose */}
-                <div>
-                    <textarea className='md:w-full w-[20rem] rounded sm:w-[24rem] p-3'
-                        type='text-area' 
-                        placeholder='Purpose'
-                        name='purpose'
-                        value={formdata.purpose}
-                        onChange={handleChange}/>
-                </div>
+               
                 {/* Flat & wing */}
                 <div className='dropdown px-10 mt-6'>
                 <div className='menu-field flex flex-col gap-2 md:flex-row'>

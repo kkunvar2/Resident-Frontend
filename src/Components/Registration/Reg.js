@@ -82,7 +82,7 @@ const Reg = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch('http://your-api-endpoint.com/api/v1/complaint/register-complaint', {
+            const response = await fetch('http://your-api-endpoint.com/api/v1/auth/signup', {
                 method: 'POST',
                 headers: {  
                     'Content-Type': 'application/json',
@@ -91,12 +91,12 @@ const Reg = () => {
             });
             if (response.ok) {
                 navigate('/dash ')
-                console.log('Complaint registered successfully');
+                console.log('registered successfully');
             } else {
-                console.error('Failed to register complaint');
+                console.error('Failed to register');
             }
         } catch (error) {
-            console.error('Error registering complaint:', error);
+            console.error('Error registering ', error);
         }
         console.log(inputs)
     };

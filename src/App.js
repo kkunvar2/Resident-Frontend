@@ -27,7 +27,7 @@ const App = () => {
 
         {/* Login & Signup*/}
         <Route path='/log' element={<Log />}/>
-        <Route path='/reg' element={<Reg />}/>
+        {/* <Route path='/reg' element={<Reg />}/> */}
         <Route path='/register' element={<Register />}/>
 
         {/* Dashboard */}
@@ -48,7 +48,7 @@ const App = () => {
 
         {/* Meetings */}
         <Route path='/memmeeting' element={<MemMeeting />}/>
-        <Route path='/secmeetings' element={<SecMeetings/>}/>
+        <Route path='/secmeeting' element={<SecMeetings/>}/>
 
         
         {/* Maintanance */}

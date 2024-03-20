@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 const Register = () => {
     const navigate = useNavigate();
 
+    const roles = ['Admin', 'Member', 'Secratary', 'Comitee', 'Guard'];
     const wings = ['A', 'B', 'C', 'D'];
     const floors = {
         'A': ['101', '102', '103', '104', '105'],
@@ -13,10 +14,11 @@ const Register = () => {
         'D': ['401', '402', '403', '404', '405']
     };
 
+    const [selroles, setselroles] = useState('')
     const [selwing, setSelWing] = useState('');
     const [selfloor, setSelFloor] = useState('');
     const [pass, setPass] = useState('');
-    const [cnPass, setCnPass] = useState('');
+    const [confirmPassword, setconfirmPassword] = useState('');
     const [match, setMatch] = useState(true);
     const [inputs, setInputs] = useState({
         name: '',
@@ -28,6 +30,11 @@ const Register = () => {
         email: '',
         mobile: '',
     });
+
+    const handleRole = (e) => {
+        setselroles(e.target.value);
+       
+    };
 
     const handleWing = (e) => {
         setSelWing(e.target.value);
@@ -65,7 +72,7 @@ const Register = () => {
     };
 
     const handleConfirmPass = (event) => {
-        setCnPass(event.target.value);
+        setconfirmPassword(event.target.value);
         if (pass !== event.target.value) {
             setMatch(false);
         } else{
@@ -78,23 +85,34 @@ const Register = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch('http://your-api-endpoint.com/api/v1/complaint/register-complaint', {
+
+            const userdata = {
+                name: inputs.name,
+                email: inputs.email,
+                mobile: inputs.mobile,
+                password: pass,
+                confirmPassword: confirmPassword ,
+                wing: selwing,
+                flat: selfloor, 
+                roles: selroles,
+            }
+            console.log(userdata)
+            const response = await fetch('http://your-api-endpoint.com/api/v1/auth/signup', {
                 method: 'POST',
                 headers: {  
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(inputs),
+                body: JSON.stringify(userdata),
             });
             if (response.ok) {
-                navigate('/dash ')
-                console.log('Complaint registered successfully');
+                navigate('/log ')
+                console.log('registered successfully');
             } else {
-                console.error('Failed to register complaint');
+                console.error('Failed to register');
             }
         } catch (error) {
-            console.error('Error registering complaint:', error);
+            console.error('Error registering:', error);
         }
-        console.log(inputs)
     };
 
   return (
@@ -109,8 +127,20 @@ const Register = () => {
                     </div>
 
                     
-
-                    <p className="mt-1 text-center text-gray-500 dark:text-gray-400">Register your account</p>
+                    <div className='flex justify-between'>
+                        <p className="mt-1 text-center text-gray-500 dark:text-gray-400">Register your account</p>
+                        <div className='flex'>
+                            <select className='bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 rounded-full border border-gray-600 focus:border-yellow-500 text-sm outline-none text-gray-100 py-0 px-3 leading-8 transition-colors duration-200 ease-in-out' 
+                                onChange={handleRole}>
+                                <option className='bg-gray-600 font-normal'>Rolls</option>
+                                {
+                                    roles.map((roll) => {
+                                        return <option className='bg-gray-600 text-yellow-400' name='roles'>{roll}</option>
+                                    })
+                                }
+                            </select>
+                        </div>
+                    </div>
                     {/* form */}
                     <form onSubmit={handleSubmit}>
                         <div className="w-full mt-4">
@@ -129,7 +159,7 @@ const Register = () => {
                                 value={inputs.email} 
                                 onChange={handleValidation}/>
                         </div>
-                        {formErrors.email && <p style={{ color: "#ff6347", fontSize: "13px", paddingTop:"10px",  margin: 0}}>{formErrors.email}</p>}
+                        {formErrors.email && <p style={{ color: "#ff6347", fontSize: "13px", paddingTop:"4px",  margin: 0}}>{formErrors.email}</p>}
                         
                         <div className=''>
                         <input  className="block w-full px-4 py-2 mt-2 text-gray-400 placeholder-gray-500 bg-gray-800 border rounded-lg focus:focus:border-yellow-300  focus:ring-opacity-40  focus:ring-blue-300"
@@ -138,10 +168,33 @@ const Register = () => {
                             name='mobile' 
                             value={inputs.mobile} 
                             onChange={handleValidation} />
-                            {formErrors.mobile && <p style={{ color: "#ff6347", fontSize: "13px", paddingTop: "10px", margin: 0 }}>{formErrors.mobile}</p>}
+                            {formErrors.mobile && <p style={{ color: "#ff6347", fontSize: "13px", paddingTop: "4px", margin: 0 }}>{formErrors.mobile}</p>}
                         </div>
 
-
+                        {/* Password */}
+                        <div className='mt-4'>
+                            <div className='input'>
+                                <input className='block w-full px-4 py-2 mt-2 text-gray-400 placeholder-gray-500 bg-gray-800 border rounded-lg focus:focus:border-yellow-300  focus:ring-opacity-40  focus:ring-blue-300' 
+                                    type='password' 
+                                    name='password'
+                                    placeholder='Password' 
+                                    value={pass} 
+                                    onChange={handlePass} />
+                            </div>
+                        </div>
+                        <div>
+                            <div className='input'>
+                                <input className='block w-full px-4 py-2 mt-2 text-gray-400 placeholder-gray-500 bg-gray-800 border rounded-lg focus:focus:border-yellow-300  focus:ring-opacity-40  focus:ring-blue-300' 
+                                    type='password' 
+                                    placeholder='Confirm Password' 
+                                    name='confirmpassword' 
+                                    value={confirmPassword} 
+                                    onChange={handleConfirmPass} />
+                            </div>
+                            {!match && <p style={{ color: "#ff6347", fontSize: "13px",  }}>Passwords doesn't match</p>}
+                            
+                        </div>
+                        
                         <div className="flex items-center justify-between mt-4">
                         <div className='flex gap-1'>
                             {/* wing */}
@@ -151,20 +204,20 @@ const Register = () => {
                                     <option className='bg-gray-600 font-normal' value="">Wing</option>
                                     {
                                         wings.map(state => {
-                                            return <option className='bg-gray-600 text-blue-500'>{state}</option>
+                                            return <option className='bg-gray-600 text-blue-500' name='wing'>{state}</option>
                                         })
                                     }
-
                                 </select>
                             </div>
                             {/* floor */}
                             <div className='menu-field'>
                                 {selwing && <select className='bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 rounded-full border border-gray-600 focus:border-yellow-500 text-sm outline-none text-gray-100 py-0 px-3 leading-8 transition-colors duration-200 ease-in-out'
-                                    onChange={handleFloor}>
-                                    <option className='bg-gray-600 font-normal' value="">Floor</option>
+                                    onChange={handleFloor}
+                                    >
+                                    <option className='bg-gray-600 font-normal' value="" >Floor</option>
                                     {
                                         floors[selwing].map(floor => {
-                                            return <option className='bg-gray-600 text-blue-500'>{floor}</option>
+                                            return <option className='bg-gray-600 text-blue-500' name='flat'>{floor}</option>
                                         })
                                     }
                                 </select>}
@@ -175,7 +228,7 @@ const Register = () => {
                         <button className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-yellow-400 rounded-lg hover:bg-yellow-500"
                                 onClick={handleSubmit}
                                 type='submit'>
-                            Login
+                            Signup
                         </button>
                         </div>
                     </form>

@@ -47,12 +47,12 @@ const Log = () => {
             });
             if (response.ok) {
                 navigate('/dash')
-                console.log('Complaint registered successfully');
+                console.log('Login Succesfully');
             } else {
-                console.error('Failed to register complaint');
+                console.error('Login Failed');
             }
         } catch (error) {
-            console.error('Error registering complaint:', error);
+            console.error('Error while login:');
         }
         console.log(inputs)
     };
