@@ -11,7 +11,12 @@ const ComplaintTab = () => {
     const [error, seterror] = useState(null)
 
     useEffect(() => {
-      fetch('http://your-api-endpoint.com/api/v1/complaint/view-my-complaints')
+      const token = localStorage.getItem('token');
+      fetch('http://localhost:8081/api/v1/complaint/view-my-complaints', {
+        headers: {
+          'Authorization': `Bearer ${token}` 
+        }
+      })
         .then(response => response.json())
         .then(data =>{
           setComplaints(data) 

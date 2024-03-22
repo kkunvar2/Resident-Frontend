@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 
-const ComplaintForm = () => {   
+const ComplaintForm = () => { 
 
+    const navigate = useNavigate();
     const [values, setValues] = useState({
         title: '',
         description: ''
@@ -14,15 +15,17 @@ const ComplaintForm = () => {
     const handleSubmit = async (e) =>{
         e.preventDefault()
         try {
-            const response = await fetch('http://your-api-endpoint.com/api/v1/complaint/register-complaint', {
+            const token = localStorage.getItem('token')
+            const response = await fetch('http://localhost:8081/api/v1/complaint/register-complaint', {
                 method: 'POST',
                 headers: {  
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` 
                 },
                 body: JSON.stringify(values),
             });
             if (response.ok) {
-                
+                navigate('/complaintTab')
                 console.log('Complaint registered successfully');
             } else {
                 console.error('Failed to register complaint');
@@ -43,7 +46,7 @@ const ComplaintForm = () => {
 
     return (
     <>
-    <section className=" h-auto text-gray-400 bg-gray-900 body-font">
+    <section className=" h-screen text-gray-400 bg-gray-900 body-font">
         <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
             <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
             <h1 className="title-font font-medium text-3xl text-white">Have you any Problem? freely raise your complaint</h1>
@@ -53,9 +56,7 @@ const ComplaintForm = () => {
             <form className="lg:w-2/6 md:w-1/2 bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0"
                   onSubmit={handleSubmit}>
             <div className='flex items-center justify-between'>
-                <h2 className="text-white text-lg font-medium title-font mb-5">Form</h2>
-                <input className='w-4 bg-blue-300 rounded-full mb-3' 
-                type='date'/> 
+                <h2 className="text-white text-lg font-medium title-font mb-5">Form</h2> 
             </div>
             
             {/* Name */}

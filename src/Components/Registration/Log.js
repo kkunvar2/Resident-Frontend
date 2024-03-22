@@ -8,6 +8,7 @@ const Log = () => {
     const navigate = useNavigate();
 
     //States
+    const [invalid, setinvalid] = useState(false)
     const [inputs, setInputs] = useState({
         email: '',
         password: '',
@@ -38,34 +39,6 @@ const Log = () => {
             setInputs({ ...inputs, [name]: value });
         };
         
-        //get token and redirect role wise pagw
-        // const fetchData = async () => {
-        //     try {
-        //         const token = localStorage.getItem('token');
-        //         const decodedToken = jwt_decode(token);
-        //         const userRole = decodedToken.role; // Assuming role information is stored in 'role' field
-        
-        //         // Redirect based on role
-        //         switch (userRole) {
-        //             case 'admin':
-        //                 navigate('/admin-dashboard');
-        //                 break;
-        //             case 'member':
-        //                 navigate('/dash');
-        //                 break;
-        //             case 'secretary':
-        //                 navigate('/secretary-dashboard');
-        //                 break;
-        //             default:
-        //                 break;
-        //         }
-        //     } catch (error) {
-        //         // Handle errors or unauthorized access
-        //         console.error('Error fetching data:', error);
-        //     }
-        // };
-
-
 
         const handleSubmit = async (event) => {
         event.preventDefault();
@@ -84,12 +57,12 @@ const Log = () => {
                 console.error('Login Failed');
             }
         } catch (error) {
-            console.error('Error while login:', error);
+            setinvalid(true)
+            setTimeout(()=> {
+                setinvalid(false)
+            }, 2000)
         }
     };
-
-
-
 
   return (
     <>
@@ -114,7 +87,7 @@ const Log = () => {
                                 name='email' 
                                 value={inputs.email} 
                                 onChange={handleValidation} />
-                                {formErrors.email && <p style={{ color: "#ff6347", fontSize: "13px", padding:"10px",  margin: 0}}>{formErrors.email}</p>}
+                                {formErrors.email && <p style={{ color: "#ff6347", fontSize: "13px", padding:"5px",  margin: 0}}>{formErrors.email}</p>}
                             </div>
 
                             <div className="w-full mt-4">
@@ -124,7 +97,7 @@ const Log = () => {
                                 name='password' 
                                 value={inputs.password} 
                                 onChange={handleValidation} />
-                                {formErrors.password && <p style={{ color: "#ff6347", fontSize: "13px", padding:"10px", margin: 0}}>{formErrors.password}</p>}
+                                {formErrors.password && <p style={{ color: "#ff6347", fontSize: "13px", padding:"5px", margin: 0}}>{formErrors.password}</p>}
                             </div>
 
                             <div className="flex items-center justify-between mt-4">
@@ -135,6 +108,11 @@ const Log = () => {
                                         type='submit'>
                                     Login
                                 </button>
+                            </div>
+                            <div>
+                                {invalid &&
+                                    <p className='text-red-500 text-center mt-2'>Invalid User!</p>
+                                }
                             </div>
                         </form>
                     </div>

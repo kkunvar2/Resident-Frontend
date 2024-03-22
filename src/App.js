@@ -4,7 +4,6 @@ import GuestReport from './Components/Guest/GuestReport'
 import ComplaintTab from './Components/Complaint/ComplaintTab'
 import ComplaintForm from './Components/Complaint/ComplaintForm'
 import Feed from './Components/Feedback/Feed'
-import Reg from './Components/Registration/Reg'
 import MemEvent from './Components/Events/MemEvent'
 import Guest from './Components/Guest/Guest'
 import GuestForm from './Components/Guest/GuestForm'
@@ -25,7 +24,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         {/* Landing Page */}
-        <Route path='/' element={<Landing />}/>
+        <Route path='/l' element={<Landing />}/>
 
         {/* Login & Signup*/}
         <Route path='/log' element={<Log />}/>

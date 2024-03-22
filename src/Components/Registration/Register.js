@@ -18,7 +18,7 @@ const Register = () => {
     const [selroles, setselroles] = useState('')
     const [selwing, setSelWing] = useState('');
     const [selfloor, setSelFloor] = useState('');
-    const [pass, setPass] = useState('');
+    const [password, setPass] = useState('');
     const [confirmPassword, setconfirmPassword] = useState('');
     const [match, setMatch] = useState(true);
     const [inputs, setInputs] = useState({
@@ -74,7 +74,7 @@ const Register = () => {
 
     const handleConfirmPass = (event) => {
         setconfirmPassword(event.target.value);
-        if (pass !== event.target.value) {
+        if (password !== event.target.value) {
             setMatch(false);
         } else{
             setMatch(true);
@@ -86,23 +86,29 @@ const Register = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
+            if(!selroles){
+                setFormErrors({...formErrors, role: 'Please Select The Role!'})
+                setTimeout(() => {
+                    setFormErrors({...formErrors, role: ''})
+                }, 2000)
+                return;
+            }
             const userdata = {
                 name: inputs.name,
                 email: inputs.email,
-                mobile: inputs.mobile,
-                password: pass,
+                mobile: parseInt(inputs.mobile),
+                password: password,
                 wing: selwing,
-                flat: parseInt(selfloor),
-                roles: selroles,
+                flat: selfloor,
+                role: selroles,
             };
-            console.log(userdata);
+            
 
-            const response = await axios.post('http://localhost:8081/api/v1/auth/signup', userdata, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-
+            const response = await axios.post('http://localhost:8081/lwresident/v1/auth/signup', userdata, {
+                // headers: {
+                //     'Content-Type': 'application/json',
+                // },
+            })
             if (response.status === 200) {
                 navigate('/log');
                 console.log('registered successfully');
@@ -178,7 +184,7 @@ const Register = () => {
                                     type='password' 
                                     name='password'
                                     placeholder='Password' 
-                                    value={pass} 
+                                    value={password} 
                                     onChange={handlePass} />
                             </div>
                         </div>
@@ -230,6 +236,11 @@ const Register = () => {
                                 type='submit'>
                             Signup
                         </button>
+                        </div>
+                        <div>
+                            {formErrors.role &&
+                                <p className='text-red-500 text-center mt-2'>{formErrors.role}</p>
+                            }
                         </div>
                     </form>
                 </div>
