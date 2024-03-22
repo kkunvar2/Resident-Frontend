@@ -18,6 +18,8 @@ import Register from './Components/Registration/Register'
 
 
 const App = () => {
+
+  
   return (
     <>
     <BrowserRouter>
@@ -27,7 +29,6 @@ const App = () => {
 
         {/* Login & Signup*/}
         <Route path='/log' element={<Log />}/>
-        {/* <Route path='/reg' element={<Reg />}/> */}
         <Route path='/register' element={<Register />}/>
 
         {/* Dashboard */}

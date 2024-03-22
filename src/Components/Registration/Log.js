@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
+
+
 const Log = () => {
     const navigate = useNavigate();
 
@@ -30,13 +32,42 @@ const Log = () => {
                 break;
             default:
                 break;
-        }
+            }
+            
+            setFormErrors(errors);
+            setInputs({ ...inputs, [name]: value });
+        };
+        
+        //get token and redirect role wise pagw
+        // const fetchData = async () => {
+        //     try {
+        //         const token = localStorage.getItem('token');
+        //         const decodedToken = jwt_decode(token);
+        //         const userRole = decodedToken.role; // Assuming role information is stored in 'role' field
+        
+        //         // Redirect based on role
+        //         switch (userRole) {
+        //             case 'admin':
+        //                 navigate('/admin-dashboard');
+        //                 break;
+        //             case 'member':
+        //                 navigate('/dash');
+        //                 break;
+        //             case 'secretary':
+        //                 navigate('/secretary-dashboard');
+        //                 break;
+        //             default:
+        //                 break;
+        //         }
+        //     } catch (error) {
+        //         // Handle errors or unauthorized access
+        //         console.error('Error fetching data:', error);
+        //     }
+        // };
 
-        setFormErrors(errors);
-        setInputs({ ...inputs, [name]: value });
-    };
-  
-    const handleSubmit = async (event) => {
+
+
+        const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             const response = await axios.post('http://localhost:8081/api/v1/complaint/signin', inputs, {
@@ -46,6 +77,7 @@ const Log = () => {
             });
 
             if (response.status === 200) {
+                localStorage.setItem('token', response.data.token);
                 navigate('/dash');
                 console.log('Login Successfully');
             } else {
@@ -55,6 +87,8 @@ const Log = () => {
             console.error('Error while login:', error);
         }
     };
+
+
 
 
   return (
