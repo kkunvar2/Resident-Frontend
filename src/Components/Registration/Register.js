@@ -110,13 +110,17 @@ const Register = () => {
                 // },
             })
             if (response.status === 200) {
-                navigate('/log');
                 console.log('registered successfully');
+                navigate('/log');
             } else {
                 console.error('Failed to register');
             }
         } catch (error) {
-            console.error('Error registering:', error);
+            if(error.response && error.response.status === 409){
+                setFormErrors({...formErrors, signed:"Already Signed up!"})
+            }else{
+                console.error('Error registering:', error);
+            }
         }
     };
 
@@ -237,10 +241,15 @@ const Register = () => {
                             Signup
                         </button>
                         </div>
+                        {/* Form Errors */}
                         <div>
                             {formErrors.role &&
                                 <p className='text-red-500 text-center mt-2'>{formErrors.role}</p>
                             }
+                             {formErrors.signed &&
+                                <p className='text-red-500 text-center mt-2'>{formErrors.signed}</p>
+                            }
+                            
                         </div>
                     </form>
                 </div>

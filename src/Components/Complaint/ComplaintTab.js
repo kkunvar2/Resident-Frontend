@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 const ComplaintTab = () => {
     
@@ -35,6 +36,14 @@ const ComplaintTab = () => {
     if (title && !complaint.title.toLowerCase().includes(title.toLowerCase())) return false; 
     return true;
   });
+
+  //Delete Complaints
+  const handleDelete = async(id) =>{
+     await axios.delete(`http://localhost:8081/api/v1/complaint/${id}`)
+    .then(res => {
+      setComplaints(complaints.filter(complaint => complaint.id !== id))
+    })
+  }
   
     return (
     <>
@@ -82,7 +91,9 @@ const ComplaintTab = () => {
                         {complaint.status}
                       </span>
                     </td>
-                    <td className='p-3 text-gray-700'><FontAwesomeIcon icon={faTrash} size="lg" style={{ color: "#f66151" }} /></td>
+                    <td className='p-3 text-gray-700'>
+                      <FontAwesomeIcon onClick={() => handleDelete(complaint.id)} icon={faTrash} size="lg" style={{ color: "#f66151" }} />
+                    </td>
                   </tr>
                 ))}
               </tbody>
